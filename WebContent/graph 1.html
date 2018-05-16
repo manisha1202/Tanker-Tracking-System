@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+	  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<!--<script src="demojs.js"></script>-->
+</head>
+	<body>
+	<script>
+	var config = {
+    apiKey: "AIzaSyBXsMfKFhI9_E4zu1CyZq77EJb91aZ5h2c",
+    authDomain: "tankers-lorry.firebaseapp.com",
+    databaseURL: "https://tankers-lorry.firebaseio.com",
+    projectId: "tankers-lorry",
+    storageBucket: "tankers-lorry.appspot.com",
+    messagingSenderId: "29663184650"
+  };
+  firebase.initializeApp(config);
+	</script>
+		<div id="humidity" style="height: 300px; width: 100%;"></div>
+		<div id="temp" style="height: 300px; width: 100%;"></div>
+		<script>
+			window.onload = function () {
+			console.log(new Date(1523350176183));
+				var humiditydps= []; // dataPoints
+				var tempdps=[];
+				
+				var chart = new CanvasJS.Chart("humidity", {
+					title :{
+						text: "Humidity Data"
+					},
+					axisY: {
+						includeZero: false
+					},
+					data: [{
+						type: "line",
+						dataPoints:humiditydps,
+					}]
+					
+				});
+				var chart1 = new CanvasJS.Chart("temp", {
+					title :{
+						text: "Temp Data"
+					},
+					axisY: {
+						includeZero: false
+					},
+					data: [{
+						type: "line",
+						dataPoints: tempdps
+					}]
+				});
+				var xVal = 0;
+				var yVal = 0;
+				var val;
+				var updateValueInterval = 1000;
+				var dataLength = 20; // number of dataPoints visible at any point
+
+				var updateValueChart = function (count) {
+					while (humiditydps.length > dataLength) {
+						humiditydps.shift();
+						
+					}
+					while (tempdps.length > dataLength) {
+						tempdps.shift();
+						
+					}
+					chart.render();
+					chart1.render();
+				};
+				var updateValue=function(){
+					var dbref = firebase.database().ref().child('HUMIDITY');
+					dbref.on('value',function(snap){
+						val=snap.val();
+						for (var j in val) {
+							yVal = val[j];
+							//console.log(j);
+							xVal=new Date(parseFloat(j));
+							
+							//console.log(yVal);
+							console.log(xVal);
+							humiditydps.push({
+								x: xVal,
+								y: yVal
+							});
+							
+						}
+					});
+					var dbref = firebase.database().ref().child('TEMPERATURE');
+					dbref.on('value',function(snap){
+						val=snap.val();
+						for (var j in val) {
+							yVal = val[j];//yval=val[j].('humidity')
+							xVal=new Date(parseFloat(j));
+							if(yVal>50){
+								window.alert("going to blast");
+							}
+							//console.log(yVal);
+							//console.log(xVal);
+							tempdps.push({
+								x: xVal,
+								y: yVal
+							});
+							
+						}
+					});
+				};
+
+        updateValue();
+				updateValueChart(dataLength);
+				setInterval(function(){updateValueChart()}, updateValueInterval);
+			}
+
+	</script>
+	</body>
+</html>

@@ -1,0 +1,337 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+
+
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="HandheldFriendly" content="true">
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MagicEye</title>
+    <meta name="description" content="MagicEye">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> 
+   <!--   <script src="assets/js/lib/chart-js/chartjs-init.js"></script> -->
+    <link rel="icon" href="track.png">  
+
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/flag-icon.min.css">
+    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
+    <link rel="stylesheet" href="assets/scss/style.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+<style>
+/* Tablet Landscape */
+@media screen and (max-width: 1060px) {
+    #primary { width:67%; }
+    #secondary { width:30%; margin-left:3%;}  
+}
+/* Tabled Portrait */
+@media screen and (max-width: 768px) {
+    #primary { width:100%; }
+    #secondary { width:100%; margin:0; border:none; }
+}
+</style>
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+</head>
+<body>
+        <!-- Left Panel -->
+<script>
+var config = {
+	    apiKey: "AIzaSyBXsMfKFhI9_E4zu1CyZq77EJb91aZ5h2c",
+	    authDomain: "tankers-lorry.firebaseapp.com",
+	    databaseURL: "https://tankers-lorry.firebaseio.com",
+	    projectId: "tankers-lorry",
+	    storageBucket: "tankers-lorry.appspot.com",
+	    messagingSenderId: "29663184650"
+	  };
+	  firebase.initializeApp(config);
+</script>
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <h2 style="color:white;  font-family:Georgia; margin:7px;">MagicEye</h2>
+        <!--          <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>   -->
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    </li>
+                    <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                     
+                    <li class="menu-item-has-children active dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Chart JS</a></li>
+                            <!--  <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Chart</a></li>
+                          <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a></li>  -->
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
+                      <!--       <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a></li>  -->
+                        </ul>
+                    </li>
+                
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside><!-- /#left-panel -->
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+      
+        <!-- Header-->
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Tanker's Tracker</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="index.html">Dashboard</a></li>
+                            <li><a href="#">Charts</a></li>
+                            <li class="active">Chartjs</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+  <!--      <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">  
+
+         
+
+                </div>
+
+            </div>
+        </div> -->
+<br>
+
+ <div id="temp" style="height: 350px; width: 100%;"></div>
+	
+	<div id="humidity" style="height: 350px; width: 100%;"></div>
+    </div><!-- /#right-panel -->
+
+    <!-- Right Panel -->
+
+
+    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/main.js"></script>
+    <audio id="myAudio">
+	<source src="Audio/Siren_Noise-KevanGC-1337458893.mp3" type="audio/mp3">
+	</audio>
+        <!--  Chart js -->
+  <!-- <script src="assets/js/lib/chart-js/Chart.bundle.js"></script> --> 
+  	<script>
+  	
+		window.onload = function () {
+		console.log(new Date(1523350176183));
+			var humiditydps= []; // dataPoints
+			var tempdps=[];
+			
+			var chart = new CanvasJS.Chart("humidity", {
+				title :{
+					text: "Humidity Data"
+				},
+				axisY: {
+					includeZero: false
+				},
+				data: [{
+					type: "column",
+					dataPoints:humiditydps,
+				}]
+				
+			});
+			var chart1 = new CanvasJS.Chart("temp", {
+				title :{
+					text: "Temperature Data"
+				},
+				axisY: {
+					includeZero: false
+				},
+				data: [{
+					type: "line",
+					dataPoints: tempdps
+				}]
+			});
+			var xVal = 0;
+			var yVal = 0;
+			var val;
+			var updateValueInterval = 1000;
+			var dataLength = 20; // number of dataPoints visible at any point
+
+			var updateValueChart = function (count) {
+				while (humiditydps.length > dataLength) {
+					humiditydps.shift();
+					
+				}
+				while (tempdps.length > dataLength) {
+					tempdps.shift();
+					
+				}
+				chart.render();
+				chart1.render();
+			};
+			var updateValue=function(){
+				var dbref = firebase.database().ref().child('HUMIDITY');
+				dbref.on('value',function(snap){
+					val=snap.val();
+					for (var j in val) {
+						yVal = val[j];
+						//console.log(j);
+						xVal=new Date(parseFloat(j));
+						
+						//console.log(yVal);
+						console.log(xVal);
+						humiditydps.push({
+							x: xVal,
+							y: yVal
+						});
+						
+					}
+				});
+				var dbref = firebase.database().ref().child('TEMPERATURE');
+				dbref.on('value',function(snap){
+					val=snap.val();
+					for (var j in val) {
+						yVal = val[j];//yval=val[j].('humidity')
+						xVal=new Date(parseFloat(j));
+						if(yVal>50){
+							window.alert("going to blast");
+						}
+						//console.log(yVal);
+						//console.log(xVal);
+						tempdps.push({
+							x: xVal,
+							y: yVal
+						});
+						
+					}
+				});
+			};
+
+    updateValue();
+			updateValueChart(dataLength);
+			setInterval(function(){updateValueChart()}, updateValueInterval);
+			
+			 var yVal1;
+             var lat;
+             var longt;
+             var add;
+             var j1;
+              var lock=document.getElementById('LOCK');
+              var dbref5=firebase.database().ref().child('LOCK');
+              
+              var dbref6 = firebase.database().ref().child('CURRGPS').child('LATITUDE');
+    		  
+      		dbref6.on('value',function(snap){
+      			var val=snap.val();
+      			var deg=val.split("°");
+      			var min=deg[1].split("'");
+      			var degnum=parseFloat(deg[0]);
+      			var minnum=parseFloat(min[0].trim());
+      			var secnum=parseFloat(min[1].trim());
+      			lat=degnum+(minnum/60)+(secnum/3600);
+      		});
+      		
+      		var dbref7 = firebase.database().ref().child('CURRGPS').child('LONGITUDE');
+      		
+      		dbref7.on('value',function(snap){
+      			 var val1=snap.val();
+      			var deg=val1.split("°");
+      			var min=deg[1].split("'");
+      			var degnum=parseFloat(deg[0]);
+      			var minnum=parseFloat(min[0].trim());
+      			var secnum=parseFloat(min[1].trim());
+      			longt=degnum+(minnum/60)+(secnum/3600);
+      			
+      			console.log("pre");
+      			dbref5.on('value',function(snap){
+                	  console.log("hello world!");
+                	 var val=snap.val();
+                	 
+                	 for (j1 in val) {
+                	 yVal1=val[j1];
+                	 }
+                	 console.log("before init");
+                	 init();
+                	 console.log("after init");
+                	 
+                	 
+                	
+                  });
+      			
+      			
+      		});
+      		
+      		function init(){
+      			console.log(lat);
+      			console.log(longt);
+      			var geocoder  = new google.maps.Geocoder();
+          		var myCenter = new google.maps.LatLng( lat ,longt);
+          		geocoder.geocode({'latLng': myCenter}, function (results, status) {
+          			if(status == google.maps.GeocoderStatus.OK) {           
+          			add=results[0].formatted_address;         
+          			console.log(add);
+          			
+          			console.log(add);
+                   	 if(yVal1==0){
+                   		 var x = document.getElementById("myAudio"); 
+                   		    x.play(); 
+                   	
+                   		 window.alert("CAUTION - Unlocked!!!"+"\n"+"\n"+ "TIME:  "+(new Date(parseFloat(j1)))+"\n"+"\n"+"LOCATION: "+ add);
+                   		 
+                   	 }
+          		}
+          	});
+
+      		}
+		}
+  	
+  	</script> 
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmy_ADPQnYEMV71hUxbHoliDXD2PH8Vwo&callback=initMap">
+    </script>
+
+</body>
+</html>
